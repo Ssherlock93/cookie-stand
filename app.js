@@ -1,11 +1,12 @@
 //This function takes the minimum and maximum amout of customers at the 1st and Pike //location and generates a random number of customers per hour
 
-var a = 23
-var b = 65
+var minimumPersonAverage = 23
+var maximumPersonAverage = 65
+var averageCookie = 6.3
 
-function getRandomCustomers(a,b) {
-  return Math.random() * (b - a) + a;
-  console.log(Math.random());
+function getRandomCustomers(minimumPersonAverage,maximumPersonAverage) {
+  return Math.random() * (maximumPersonAverage - minimumPersonAverage) + minimumPersonAverage;
+ console.log(Math.random());
 }
 
 
