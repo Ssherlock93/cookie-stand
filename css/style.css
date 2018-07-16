@@ -1,0 +1,22 @@
+body {
+  background-color: aqua
+}
+
+h1 {
+  color: red;
+  font-size: 40px;
+  font-family: 'Knewave' , cursive;
+}
+
+ div  {
+  width: 600px;
+  border: 5px solid black;
+  padding: 15px;
+  margin: 25px;
+}
+
+h3 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+  color: orchid
+}
