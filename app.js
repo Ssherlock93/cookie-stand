@@ -1,7 +1,17 @@
+'use strict';
 //This function takes the minimum and maximum amout of customers at the 1st and Pike //location and generates a random number of customers per hour
 
 // var timeTotal = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+// var allCookieShops = [];
+// function CookieGen(minCust, maxCust, averageCookie, total, location) {
+//   this.minCust = minCust;
+//   this.maxCust = maxCust;
+//   this.averageCookie = averageCookie;
+//   this.total = total;
+//   this.location = location;
 
+//   allCookieShops.push(this)
+// }
 
 
 // var min = 23;
@@ -36,40 +46,11 @@
 // var storeTime = document.getElementById('timeTotal');
 // storeTime.appendChild(ulEl);
 
-// var timeTotal = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', 'Total'];
-// var ulEl = document.createElement('ul');
-// for(var i = 0; i < timeTotal.length; i++) {
-//   var liEl = document.createElement('li');
-//   liEl.textContent = timeTotal[i];
-//   ulEl.appendChild(liEl);
-// }
 
-// var storeTime = document.getElementById('timeTotal');
-// storeTime.appendChild(ulEl);
+function generateRandom(min, max) {
+  return Math.random() * (max-min) + min;
 
-// var timeTotal = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', 'Total'];
-// var ulEl = document.createElement('ul');
-// for(var i = 0; i < timeTotal.length; i++) {
-//   var liEl = document.createElement('li');
-//   liEl.textContent = timeTotal[i];
-//   ulEl.appendChild(liEl);
-// }
-
-// var storeTime = document.getElementById('timeTotal');
-// storeTime.appendChild(ulEl);
-
-// var timeTotal = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', 'Total'];
-// var ulEl = document.createElement('ul');
-// for(var i = 0; i < timeTotal.length; i++) {
-//   var liEl = document.createElement('li');
-//   liEl.textContent = timeTotal[i];
-//   ulEl.appendChild(liEl);
-// }
-
-// var storeTime = document.getElementById('timeTotal');
-// storeTime.appendChild(ulEl);
-
-
+}
 var pikePlace = {
   storeName: 'Pike Place',
   minCustomers: 23,
@@ -78,17 +59,11 @@ var pikePlace = {
   customersPerHour: [],
   cookiesPerHour: [],
   dailyTotal: 0,
-  hours: ['6am', '7am', '8am'],
+  hours: ['6am', '7am', '8am', '9am', '10am', '11am'],
   calculateCustomers: function() {
-
-  //Iterate through hours
-  //For each hour, run random number generator
-  //Push to customersPerHour []
-    // for(i = 0; i < hours.length; i++){}
     for(var hour of pikePlace.hours) {
-      var rand = generateRandom(pikePlace.minCustomers, pikePlace.maxCustomers);
-     //use pikePlace. to call the object pikePlace
-     pikePlace.customersPerHour.push(rando);
+      var random = generateRandom(pikePlace.minCustomers, pikePlace.maxCustomers);
+     pikePlace.customersPerHour.push(random);
      }
      return pikePlace.customersPerHour;
   },
@@ -99,9 +74,8 @@ var pikePlace = {
       pikePlace.cookiesPerHour.push(cookies);
       pikePlace.dailyTotal += cookies;
     }
-
+      return pikePlace.cookiesPerHour;
   },
-  //finally run render() for each store we create
   render: function() {
     pikePlace.calculateSales()
 
@@ -110,14 +84,12 @@ var pikePlace = {
     h2El.textContent = pikePlace.storeName;
     ulEl.appendChild(h2El);
 
-    for (var hour in pikePlace.hours) {
+    for (var idx in pikePlace.hours) {
       var liEl = document.createElement('li');
-      liEl.textContent = hours[idx] + ': ' + pikePlace.cookiesPerHour[idx] + 'cookies';
+      liEl.textContent = pikePlace.hours[idx] + ': ' + pikePlace.cookiesPerHour[idx] + 'cookies';
       ulEl.appendChild(liEl);
 
     }
-
-    
     var liEltwo = document.createElement('li');
     liEltwo.textContent = 'Total: ' + pikePlace.dailyTotal;
     ulEl.appendChild(liEltwo);
@@ -126,4 +98,6 @@ var pikePlace = {
     mainEl.appendChild(ulEl);
 
   },
-}
+};
+
+ 
