@@ -29,25 +29,53 @@ CreateCookieStore.prototype.getCookiesPerHour = function(){
     }
   }
   
-var pikePlace = new CreateCookieStore ('Pike Place' , 15, 23, 65, 6.3);
+new CreateCookieStore ('Pike Place' , 15, 23, 65, 6.3);
+new CreateCookieStore ('Seattle', 2, 54, 5, 3.4);
 
-CreateCookieStore.prototype.createList = function() {
-  this.getCookiesPerHour();
-  var divEl = document.getElementById('pike');
-  var ulEl = document.createElement('ul');
+CreateCookieStore.prototype.createTable = function() {
+  var tableEl = document.createElement('table');
+  var rows = document.createElement('tr');
+  var td = document.createElement('td');
+  td.innerHTML = this.storeName;
+  rows.appendChild(td);
 
   for (var i = 0; i < timeTotal.length; i++) {
-    var liEl = document.createElement('li');
-    liEl.textContent = timeTotal[i] + ':' + this.cookiesPerHour[i];
-    ulEl.appendChild(liEl);
+    var tdCookieSales = document.createElement('td');
+    tdCookieSales.innerHTML = this.cookiesPerHour[i];
+    rows.appendChild(tdCookieSales);
+    
   }
-  var liElTotal = document.createElement("li");
-  liElTotal.textContent = 'Total:' + this.dailyCookieTotal;
-  ulEl.appendChild(liElTotal);
-  divEl.textContent = this.storeName;
-  divEl.appendChild(ulEl);
+  var tdTotalCookies = document.createElement("td");
+  tdTotalCookies.innerHTML = this.dailyCookieTotal;
+  row.appendChild(tdTotalCookies);
+  tableEl.appendChild(rows);
+}
+
+function tableHeading(){
+  var storeHeading = document.getElementById('table');
+  var thead = document.createElement('thead');
+  storeHeading.appendChild(thead);
+  var row = document.createElement('tr');
+  thead.appendChild(row);
+  var td = document.createElement('td');
+  td.innerHTML = 'Store Location';
+  row.appendChild(td);
+
+  for (var i = 0; i < timeTotal.length; i++) {
+    var td = document.createElement('td');
+    td.innerHTML = timeTotal[i];
+    row.appendChild(td);
   }
 
-  pikePlace.createList();
+  var tdDailyCookie = document.createElement('th');
+  tdDailyCookie.textContent = this.dailyCookieTotal;
+  tdDailyCookie.innerHTML = 'Total Cookies';
+  row.appendChild(tdDailyCookie);
+  storeHeading.appendChild(row);
+}
 
+tableHeading();
 
+for (var stores of allStores) {
+  CreateCookieStore.createTable();
+}
