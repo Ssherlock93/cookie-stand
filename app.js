@@ -4,9 +4,13 @@
 var timeTotal = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var allStores = [];
 
-function CreateCookieStore(name, time, min, max, average){
+
+//Create a constructor function for creating cookie stores
+
+
+function CreateCookieStore(name, min, max, average){
   this.storeName = name;
-  this.timeTotal = time;
+  this.timeTotal = timeTotal;
   this.minimumPersonAverage = min;
   this.maximumPersonAverage = max;;
   this.averageCookie = average;
@@ -28,18 +32,22 @@ CreateCookieStore.prototype.getCookiesPerHour = function(){
       this.dailyCookieTotal += randomCookies;
     }
   }
-  
+  //Creating the 5 stores
+
 new CreateCookieStore ('Pike Place' , 15, 23, 65, 6.3);
-new CreateCookieStore ('Seattle', 2, 54, 5, 3.4);
+new CreateCookieStore ('SeaTac', 3, 24, 1.2);
+new CreateCookieStore('Seattle Center', 11, 38, 3.7);
+new CreateCookieStore('Capitol Hill', 20, 38, 2.3);
+new CreateCookieStore('Alki', 2, 16, 4.6);
 
 CreateCookieStore.prototype.createTable = function() {
-  var tableEl = document.createElement('table');
+  var tableEl = document.getElementById('table');
   var rows = document.createElement('tr');
   var td = document.createElement('td');
   td.innerHTML = this.storeName;
   rows.appendChild(td);
 
-  for (var i = 0; i < timeTotal.length; i++) {
+  for (var i = 0; i < cookiesPerHour.length; i++) {
     var tdCookieSales = document.createElement('td');
     tdCookieSales.innerHTML = this.cookiesPerHour[i];
     rows.appendChild(tdCookieSales);
@@ -50,7 +58,7 @@ CreateCookieStore.prototype.createTable = function() {
   row.appendChild(tdTotalCookies);
   tableEl.appendChild(rows);
 }
-
+//Function to create the table heading
 function tableHeading(){
   var storeHeading = document.getElementById('table');
   var thead = document.createElement('thead');
@@ -73,7 +81,7 @@ function tableHeading(){
   row.appendChild(tdDailyCookie);
   storeHeading.appendChild(row);
 }
-
+//Call the tableHeading function
 tableHeading();
 
 for (var stores of allStores) {
